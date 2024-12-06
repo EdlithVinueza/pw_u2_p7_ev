@@ -11,43 +11,25 @@
 
 <body>
     <div id="myApp">
-        {{ listaFrases }}
-        <p>De forma manual</p>
-        <ul>
-            <li> 1 </li>
-            <li> 2 </li>
-            <li> 3 </li>
-            <li> 4 </li>
-            <li> 5 </li>
-            <li> 6 </li>
-            <li> 7 </li>
-        </ul>
-        <hr>
-        <p>Sin interar elemento por elemento de la lista</p>
-        <ul>
-            <li v-for="frase in listaFrases">La vida es un viaje, no un destino.</li>
-        </ul>
-        <hr>
-        <p>Interando por la lista</p>
-        <ul>
-            <li v-for="frase in listaFrases">{{ frase.frase }} - {{frase.autor}}
-                <button>{{frase.autor}}</button>
-                <p>{{frase.frase }}</p>
-            </li>
-          
-        </ul>
-        <hr>
-        <label for="idFrase">Frase:</label>
-        <input id="idFrase" type="text">
-        <label for="idAutor">Autor</label>
-        <input id="idAutor"type="text">
-        <button>Agregar</button>
-
+        
+        <label for="idFrase">Frase: </label>
+        <input v-model="frase" id="idFrase" type="text"> <!--Directiva v-model--->
+        <P> {{frase}}</P>
+       
+        <label for="idAutor">Autor: </label>
+        <!--<input v-on:keypress="eventoKeyPress" v-model="autor" id="idAutor"type="text">-->
+        <input v-on:keypress.enter="eventoKeyPressModificador" v-model="autor" id="idAutor"type="text"><!--Directiva v-model--->
+        <br>
+        <br>
+       <button v-on:click="agregarFrase">Agregar</button> 
+        
+       
+        <button v-on:click="agregarFraseFinal">Agregar al Final</button> 
         <p>Destructuracion de objeto</p>
         <ul>
             <li v-for="{frase,autor} in listaFrases">{{frase }} - {{autor}}
-                <button>{{autor}}</button>
-                <p>{{frase }}</p>
+                <button v-if="autor!==null" >{{autor}}</button>
+                <p v-if="autor!==null" >Autor: {{autor}}</p>
             </li>
         </ul>
 </body>
